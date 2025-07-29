@@ -1,0 +1,55 @@
+{
+    "title": "0721",
+    "theme": {
+        "theme": "liora",
+        "displayName": "Liora",
+        "colors": {
+            "autoSwitch": {
+                "displayName": "Auto",
+                "light": "sun",
+                "dark": "moon",
+                "icon": {
+                    "icon": "fa-solid fa-circle-half-stroke",
+                    "color": "#808080",
+                    "background": "linear-gradient(45deg, #eeeeee 50%, #1c1c1c 50%)"
+                }
+            },
+            "enable": ["sun", "!autoSwitch", "moon"],
+            "default": "moon"
+        }
+    },
+    "masterInfo": {
+        "name": "小狙",
+        "avatar": "./assets/images/Shiki_Natsume.png",
+        "website": "www.xiaojuch.com",
+        "socialLink": {
+            "link": {
+                "bilibili": "https://space.bilibili.com/431561704",
+                "github": "https://github.com/XiaojuCH",
+                "email": "javascript:showEmail()"
+            },
+            "icon": {
+                "bilibili": "fa-brands fa-bilibili",
+                "github": "fa-brands fa-github",
+                "email": "fa-solid fa-envelope"
+            },
+            "enable": ["bilibili", "github", "email"]
+        }
+    },
+    "pageHead": {
+        "typedContent": ["离群索居，我们永不孤独", "In solitude, where we are least alone."]
+    },
+    "icp": {
+        "info": {
+            "code": {
+                "china": "粤ICP备2025446005号",
+                "moegov": "萌ICP备2025446005号"
+            },
+            "link": {
+                "china": "https://beian.miit.gov.cn",
+                "moegov": "https://icp.gov.moe/?keyword=xxxxxxxx"
+            }
+        },
+        "enable": ["moegov", "china"]
+    }
+}

@@ -1,0 +1,85 @@
+/* 全局样式 */
+body {
+    background-color: var(--color-mantle);
+    color: var(--color-text);
+}
+
+/* - 页首 */
+.page-head {
+    background-color: var(--color-mantle);
+    background-image: url(../assets/images/page-head/wallhaven-zyjp5g.png);
+    background-size: cover;
+    background-position: center 30%;
+    transition:
+        height ease 1s,
+        margin ease-in 0.25s;
+
+    * {
+        transition:
+            margin ease 1s,
+            text-shadow ease 1s;
+    }
+}
+
+.page-head.expand {
+    height: 100vh;
+    margin-bottom: 30px;
+
+    * {
+        margin-top: calc(100vh * 0.25);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+}
+/* - 页首 End */
+
+/* 内容版块 */
+.primary-container > .right-area > .content-page {
+    background-color: var(--color-base);
+}
+
+/* 内容板块的贴纸 */
+.primary-container > .right-area > .content-page::before {
+    background-color: var(--color-overlay);
+}
+
+/* - 左侧卡片 */
+.primary-container > .left-area > .cards > .card-item {
+    background-color: var(--color-base);
+}
+
+/* 个人信息 */
+.primary-container > .left-area > .cards > .card-item#personal-info > .social-icons i {
+    background-color: var(--color-accent);
+    color: var(--color-accent-fg);
+}
+
+/* - 浏览设置 */
+.primary-container > .left-area > .cards > .card-item > .content > .settings-item {
+    padding: 8px 10px;
+    background-color: var(--color-dent);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    color: unset;
+}
+
+/* 主题设置 */
+.primary-container > .left-area > .cards > .card-item > .content > .settings-item > .themes > .theme-item.enable {
+    box-shadow: unset;
+    border: 1px solid var(--color-divide);
+}
+/* - 浏览设置 End */
+
+/* - 左侧卡片 End */
+
+/* - 页脚 */
+.footer {
+    background-color: var(--color-crust);
+}
+
+.footer > .line-break {
+    color: var(--color-weak);
+}
+
+.footer .icp-link {
+    color: var(--color-text);
+}
+/* - 页脚 End */
