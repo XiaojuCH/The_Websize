@@ -113,8 +113,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     /* 检测页脚的重复作者名称并修正 */ // (好像没啥用
 
-    // 球球你别改这里可以嘛呜呜呜 (＞﹏＜)
-    if (config.content.masterInfo.name === "成成0v0") {
+    if (config.content.masterInfo.name === "Xiaoju") {
         element.webmasterInfo.innerHTML = "";
     }
 
