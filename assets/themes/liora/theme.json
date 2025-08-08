@@ -18,8 +18,8 @@
                 },
                 "icon": {
                     "icon": "fa-solid fa-sun",
-                    "color": "#ae7954",
-                    "background": "#fff9ea"
+                    "color": "#3a86d0",
+                    "background": "#f5f9ff"
                 }
             },
             "moon": {

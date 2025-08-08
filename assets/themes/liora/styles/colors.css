@@ -1,21 +1,28 @@
 :root {
-    --color-base: #fff9ea;
-    --color-mantle: #fef4dd;
-    --color-crust: #ebdcb8;
-    --color-dent: #f5eedd;
-    --color-text: #7a5a43;
-    --color-text-selection: #f5d09f;
-    --color-key: #ae7954;
-    --color-weak: #cdb09c;
-    --color-divide: #c1a177;
-    --color-outline: #ffdb9a;
-    --color-accent: #f59768;
-    --color-accent-fg: #ffdb9a;
-    --color-overlay: #ebdcb8;
-    --color-positive: #a8cf88;
-    --color-positive-fg: #4c634e;
-    --color-danger: #e07a83;
-    --color-danger-fg: #723033;
-    --color-warning: #f9d48b;
-    --color-warning-fg: #8b5a2d;
+    /* 蓝白基调 */
+    --color-base: #f5f9ff;      /* 主背景 - 柔和的浅蓝白 */
+    --color-mantle: #e6f0ff;   /* 次级背景 - 更明显的淡蓝 */
+    --color-crust: #d4e4fa;    /* 三级背景 - 浅钢蓝色 */
+    --color-dent: #edf5ff;     /* 凹陷效果 - 比主背景稍深 */
+    
+    /* 文字与交互 */
+    --color-text: #2c3e66;     /* 深藏青蓝 - 主要文字 */
+    --color-text-selection: #c1d8ff; /* 浅天蓝 - 选中背景 */
+    --color-key: #4a76b8;      /* 温润蓝 - 关键元素 */
+    --color-weak: #8a9bb8;     /* 灰蓝色 - 弱化文本 */
+    --color-divide: #c1d1e1;   /* 淡钢蓝 - 分隔线 */
+    --color-outline: #a0c0f0;  /* 柔和水蓝 - 轮廓 */
+    
+    /* 强调色 */
+    --color-accent: #3a86d0;   /* 活力蓝 - 主要强调色 */
+    --color-accent-fg: #ffffff; /* 白色 - 强调色上的文字 */
+    
+    /* 状态色 */
+    --color-overlay: rgba(212, 228, 250, 0.85); /* 半透浅钢蓝 - 浮层 */
+    --color-positive: #4daa91; /* 蓝绿色 - 成功状态 */
+    --color-positive-fg: #ffffff; 
+    --color-danger: #e56a6a;   /* 柔化红 - 错误状态 */
+    --color-danger-fg: #ffffff;
+    --color-warning: #ffb74d;  /* 琥珀色 - 警告状态 */
+    --color-warning-fg: #2c3e66;
 }
