@@ -7,7 +7,7 @@ body {
 /* - 页首 */
 .page-head {
     background-color: var(--color-mantle);
-    background-image: url(https://cdnfronts.xiaojuch.com/wallhaven-zyjp5g.png);
+    background-image: url(https://cdnfronts.xiaojuch.com/images/sora.png);
     background-size: cover;
     background-position: center 30%;
     transition:
