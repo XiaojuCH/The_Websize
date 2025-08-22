@@ -25,17 +25,17 @@ body::-webkit-scrollbar-thumb:active {
 
 /* - 鼠标指针 */
 * {
-    cursor: url(https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cursor/normal.cur), auto;
+    cursor: url(../libs/cur/normal.cur), auto;
 }
 
 p,
 span {
-    cursor: url(https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cursor/texto.cur), auto;
+    cursor: url(../libs/cur/texto.cur), auto;
 }
 
 a {
     background-color: transparent;
-    cursor: url(https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cursor/ayuda.cur), auto;
+    cursor: url(../libs/cur/ayuda.cur), auto;
 }
 /* - 鼠标指针 End */
 
