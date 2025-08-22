@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>登录 / 注册</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; }
+    .container { max-width: 400px; margin: auto; }
+    input { display: block; margin: 10px 0; padding: 8px; width: 100%; }
+    button { padding: 10px; width: 100%; margin: 5px 0; }
+    #output { margin-top: 20px; white-space: pre-wrap; }
+    #status { margin-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>用户登录 / 注册</h2>
+
+    <input type="text" id="username" placeholder="用户名">
+    <input type="password" id="password" placeholder="密码">
+
+    <button id="registerBtn" onclick="register()">注册</button>
+    <button id="loginBtn" onclick="login()">登录</button>
+    <button id="profileBtn" onclick="getProfile()">查看我的信息</button>
+    <button id="logoutBtn" onclick="logout()">注销</button>
+
+    <div id="status">未登录</div>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    const API_BASE = "/api"; // 反向代理后的路径
+
+    const registerBtn = document.getElementById("registerBtn");
+    const loginBtn = document.getElementById("loginBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const statusDiv = document.getElementById("status");
+
+    function updateUI() {
+      const token = localStorage.getItem("token");
+      const username = localStorage.getItem("username");
+      if (token && username) {
+        statusDiv.innerText = `已登录：${username}`;
+        loginBtn.disabled = true;
+        registerBtn.disabled = true;
+        logoutBtn.disabled = false;
+      } else {
+        statusDiv.innerText = "未登录";
+        loginBtn.disabled = false;
+        registerBtn.disabled = false;
+        logoutBtn.disabled = true;
+      }
+    }
+
+    async function register() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      if (!username || !password) {
+        alert("用户名和密码不能为空！");
+        return;
+      }
+
+      const res = await fetch(`${API_BASE}/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+      document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+    }
+
+    async function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      if (!username || !password) {
+        alert("用户名和密码不能为空！");
+        return;
+      }
+
+      const res = await fetch(`${API_BASE}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", username);
+        updateUI();
+      }
+      document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+    }
+
+    async function getProfile() {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("请先登录！");
+        return;
+      }
+
+      const res = await fetch(`${API_BASE}/profile`, {
+        headers: { "Authorization": `Bearer ${token}` }
+      });
+      const data = await res.json();
+      document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+    }
+
+    function logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      updateUI();
+      document.getElementById("output").innerText = "已注销";
+    }
+
+    // 页面加载时更新状态
+    updateUI();
+  </script>
+</body>
+</html>

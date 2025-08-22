@@ -15,7 +15,7 @@
                 }
             },
             "enable": ["sun", "!autoSwitch", "moon"],
-            "default": "moon"
+            "default": "!autoSwitch"
         }
     },
     "masterInfo": {
