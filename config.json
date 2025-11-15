@@ -43,11 +43,11 @@
         "info": {
             "code": {
                 "china": "粤ICP备2025446005号",
-                "moegov": "萌ICP备2025446005号"
+                "moegov": "萌ICP备20256991号"
             },
             "link": {
                 "china": "https://beian.miit.gov.cn",
-                "moegov": "https://icp.gov.moe/?keyword=xxxxxxxx"
+                "moegov": "https://icp.gov.moe/?keyword=20256991"
             }
         },
         "enable": ["moegov", "china"]
