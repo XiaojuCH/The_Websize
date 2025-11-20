@@ -14,7 +14,7 @@ const STATUS_MAP = {
 async function fetchBangumiCollection(subjectType) {
     try {
         const allCollections = [];
-        const types = [1, 2, 3, 4]; // 想看、在看、看过、搁置
+        const types = [3, 1, 2, 4]; // 在看、想看、看过、搁置
 
         for (const type of types) {
             const response = await fetch(
@@ -43,6 +43,24 @@ async function fetchBangumiCollection(subjectType) {
 
 // 转换番剧数据
 async function loadAnimeFromBangumi() {
+    // 尝试从缓存加载
+    const cacheKey = 'bangumi_anime_cache';
+    const cacheTimeKey = 'bangumi_anime_cache_time';
+    const cacheExpiry = 30 * 60 * 1000; // 30分钟过期
+
+    const cachedData = localStorage.getItem(cacheKey);
+    const cacheTime = localStorage.getItem(cacheTimeKey);
+
+    if (cachedData && cacheTime) {
+        const now = new Date().getTime();
+        if (now - parseInt(cacheTime) < cacheExpiry) {
+            console.log('从缓存加载番剧数据');
+            return JSON.parse(cachedData);
+        }
+    }
+
+    // 缓存过期或不存在，从API获取
+    console.log('从API加载番剧数据');
     const collections = await fetchBangumiCollection(2); // 2 = 动画
 
     const animeList = collections.map(item => ({
@@ -61,7 +79,7 @@ async function loadAnimeFromBangumi() {
         comment: item.comment || ''
     }));
 
-    return {
+    const result = {
         animeList,
         statusLabels: {
             watched: '看过',
@@ -76,6 +94,12 @@ async function loadAnimeFromBangumi() {
             ONA: '网络动画'
         }
     };
+
+    // 保存到缓存
+    localStorage.setItem(cacheKey, JSON.stringify(result));
+    localStorage.setItem(cacheTimeKey, new Date().getTime().toString());
+
+    return result;
 }
 
 // 获取完整的条目详情（包括完整简介）
@@ -103,6 +127,24 @@ async function fetchSubjectDetail(subjectId) {
 
 // 转换 Galgame 数据
 async function loadGalgameFromBangumi() {
+    // 尝试从缓存加载
+    const cacheKey = 'bangumi_galgame_cache';
+    const cacheTimeKey = 'bangumi_galgame_cache_time';
+    const cacheExpiry = 30 * 60 * 1000; // 30分钟过期
+
+    const cachedData = localStorage.getItem(cacheKey);
+    const cacheTime = localStorage.getItem(cacheTimeKey);
+
+    if (cachedData && cacheTime) {
+        const now = new Date().getTime();
+        if (now - parseInt(cacheTime) < cacheExpiry) {
+            console.log('从缓存加载 Galgame 数据');
+            return JSON.parse(cachedData);
+        }
+    }
+
+    // 缓存过期或不存在，从API获取
+    console.log('从API加载 Galgame 数据');
     const collections = await fetchBangumiCollection(4); // 4 = 游戏
 
     const galgameList = collections.map(item => ({
@@ -122,7 +164,7 @@ async function loadGalgameFromBangumi() {
         comment: item.comment || ''
     }));
 
-    return {
+    const result = {
         galgameList,
         statusLabels: {
             completed: '已通关',
@@ -138,4 +180,10 @@ async function loadGalgameFromBangumi() {
             Mobile: '移动端'
         }
     };
+
+    // 保存到缓存
+    localStorage.setItem(cacheKey, JSON.stringify(result));
+    localStorage.setItem(cacheTimeKey, new Date().getTime().toString());
+
+    return result;
 }

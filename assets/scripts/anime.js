@@ -45,6 +45,8 @@
     // 渲染番剧网格
     function renderAnimeGrid(animeList) {
         const grid = document.getElementById('anime-grid');
+        if (!grid) return; // 如果页面上没有这个元素，直接返回
+
         const path = window.location.pathname;
         const isHomePage = path.endsWith('index.html') || path === '/' || path.endsWith('/') || (!path.includes('myanime') && !path.includes('mygal'));
 
@@ -69,7 +71,7 @@
             <div class="anime-card" data-id="${anime.id}" data-status="${anime.status}">
                 <div class="cover-wrapper">
                     <img class="cover" src="${anime.cover}" alt="${anime.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/180x255?text=No+Image'">
-                    <span class="status-badge ${anime.status}">${animeData.statusLabels[anime.status]}</span>
+                    ${!isHomePage ? `<span class="status-badge ${anime.status}">${animeData.statusLabels[anime.status]}</span>` : ''}
                     <div class="rating">
                         <i class="fa-solid fa-star"></i>
                         <span>${anime.rating}</span>
@@ -88,9 +90,23 @@
 
         // 绑定点击事件
         grid.querySelectorAll('.anime-card').forEach(card => {
-            card.addEventListener('click', () => {
+            card.addEventListener('click', (e) => {
                 const animeId = parseInt(card.dataset.id);
                 const anime = animeList.find(a => a.id === animeId);
+
+                // 按住 Ctrl 键点击时，显示并复制 ID（仅在本地开发环境）
+                const isLocalhost = window.location.hostname === 'localhost' ||
+                                   window.location.hostname === '127.0.0.1' ||
+                                   window.location.hostname === '';
+                if ((e.ctrlKey || e.metaKey) && isLocalhost) {
+                    e.preventDefault();
+                    console.log(`番剧 ID: ${animeId} - ${anime.title}`);
+                    navigator.clipboard.writeText(animeId.toString()).then(() => {
+                        alert(`已复制 ID: ${animeId}\n标题: ${anime.title}\n\n可以将此 ID 添加到 config.json 的 recommendations.anime 数组中`);
+                    });
+                    return;
+                }
+
                 if (anime) showAnimeModal(anime);
             });
         });
@@ -99,6 +115,8 @@
     // 渲染 Galgame 网格
     function renderGalgameGrid(galgameList) {
         const grid = document.getElementById('galgame-grid');
+        if (!grid) return; // 如果页面上没有这个元素，直接返回
+
         const path = window.location.pathname;
         const isHomePage = path.endsWith('index.html') || path === '/' || path.endsWith('/') || (!path.includes('myanime') && !path.includes('mygal'));
 
@@ -123,7 +141,7 @@
             <div class="anime-card galgame-card" data-id="${game.id}" data-status="${game.status}">
                 <div class="cover-wrapper">
                     <img class="cover" src="${game.cover}" alt="${game.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/180x255?text=No+Image'">
-                    <span class="status-badge ${game.status}">${galgameData.statusLabels[game.status]}</span>
+                    ${!isHomePage ? `<span class="status-badge ${game.status}">${galgameData.statusLabels[game.status]}</span>` : ''}
                     <div class="rating">
                         <i class="fa-solid fa-star"></i>
                         <span>${game.rating}</span>
@@ -140,9 +158,23 @@
         `).join('');
 
         grid.querySelectorAll('.galgame-card').forEach(card => {
-            card.addEventListener('click', () => {
+            card.addEventListener('click', (e) => {
                 const gameId = parseInt(card.dataset.id);
                 const game = galgameList.find(g => g.id === gameId);
+
+                // 按住 Ctrl 键点击时，显示并复制 ID（仅在本地开发环境）
+                const isLocalhost = window.location.hostname === 'localhost' ||
+                                   window.location.hostname === '127.0.0.1' ||
+                                   window.location.hostname === '';
+                if ((e.ctrlKey || e.metaKey) && isLocalhost) {
+                    e.preventDefault();
+                    console.log(`Galgame ID: ${gameId} - ${game.title}`);
+                    navigator.clipboard.writeText(gameId.toString()).then(() => {
+                        alert(`已复制 ID: ${gameId}\n标题: ${game.title}\n\n可以将此 ID 添加到 config.json 的 recommendations.galgame 数组中`);
+                    });
+                    return;
+                }
+
                 if (game) showGalgameModal(game);
             });
         });
@@ -151,6 +183,8 @@
     // 初始化筛选器
     function initFilters(sectionSelector) {
         const section = document.querySelector(sectionSelector);
+        if (!section) return; // 如果页面上没有这个section，直接返回
+
         const filterBtns = section.querySelectorAll('.filter-btn');
         const grid = section.querySelector('.anime-grid');
 

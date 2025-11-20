@@ -53,7 +53,7 @@
         "enable": ["moegov", "china"]
     },
     "recommendations": {
-        "anime": [],
-        "galgame": []
+        "anime": [289, 3375, 37685, 72941],
+        "galgame": [22290, 1126, 4639, 1167]
     }
 }
