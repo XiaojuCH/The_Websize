@@ -19,11 +19,14 @@
 
         <link rel="stylesheet" href="./assets/styles/elements.css" />
         <link rel="stylesheet" href="./assets/styles/index.css" />
+        <link rel="stylesheet" href="./assets/styles/anime.css" />
         <link rel="stylesheet" href="./assets/styles/responsive/index.css" />
 
         <script src="./assets/scripts/utils.js"></script>
         <script src="./assets/scripts/theme-loader.js"></script>
         <script src="./assets/scripts/index.js"></script>
+        <script src="./assets/scripts/bangumi-api.js"></script>
+        <script src="./assets/scripts/anime.js"></script>
 
         <theme></theme>
     </head>
@@ -66,6 +69,24 @@
             <div class="right-area">
                 <div class="content-page">
                     <div class="markdown-content" src="./assets/markdown/content-page.md"></div>
+                </div>
+                <div class="anime-section">
+                    <div class="anime-header">
+                        <h2><i class="fa-solid fa-tv"></i> 番剧推荐</h2>
+                        <a href="myanime.html" style="color: var(--accent-color); text-decoration: none; font-size: 0.9rem;">查看更多 →</a>
+                    </div>
+                    <div class="anime-grid" id="anime-grid">
+                        <div class="anime-loading">加载中...</div>
+                    </div>
+                </div>
+                <div class="anime-section galgame-section">
+                    <div class="anime-header">
+                        <h2><i class="fa-solid fa-gamepad"></i> Galgame 推荐</h2>
+                        <a href="mygal.html" style="color: var(--accent-color); text-decoration: none; font-size: 0.9rem;">查看更多 →</a>
+                    </div>
+                    <div class="anime-grid" id="galgame-grid">
+                        <div class="anime-loading">加载中...</div>
+                    </div>
                 </div>
             </div>
         </div>

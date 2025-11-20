@@ -51,5 +51,9 @@
             }
         },
         "enable": ["moegov", "china"]
+    },
+    "recommendations": {
+        "anime": [],
+        "galgame": []
     }
 }

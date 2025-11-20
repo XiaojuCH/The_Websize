@@ -1,0 +1,488 @@
+/* 番剧展示区域样式 */
+.anime-section {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: var(--card-background);
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.anime-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.anime-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.anime-header h2 i {
+    color: var(--accent-color);
+}
+
+.anime-filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1.2rem;
+    border: 2px solid var(--border-color);
+    background: transparent;
+    color: var(--text-color);
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.filter-btn:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+}
+
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.anime-loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.anime-card {
+    position: relative;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--card-background);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.anime-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.anime-card .cover-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 141.4%;
+    overflow: hidden;
+    background: var(--background-secondary);
+}
+
+.anime-card .cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.anime-card:hover .cover {
+    transform: scale(1.1);
+}
+
+.anime-card .status-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.3rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: white;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+}
+
+.status-badge.watched {
+    background: rgba(76, 175, 80, 0.9);
+}
+
+.status-badge.watching {
+    background: rgba(33, 150, 243, 0.9);
+}
+
+.status-badge.plan {
+    background: rgba(255, 152, 0, 0.9);
+}
+
+.status-badge.dropped {
+    background: rgba(158, 158, 158, 0.9);
+}
+
+.anime-card .rating {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.anime-card .info {
+    padding: 0.8rem;
+}
+
+.anime-card .title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.3rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+    min-height: 2.8em;
+}
+
+.anime-card .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+.anime-card .type {
+    padding: 0.2rem 0.5rem;
+    background: var(--background-secondary);
+    border-radius: 0.3rem;
+    font-weight: 500;
+}
+
+/* 番剧详情弹窗 */
+.anime-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    padding: 2rem;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease;
+}
+
+.anime-modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.anime-modal-content {
+    background: var(--card-background);
+    border-radius: 1rem;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp 0.3s ease;
+}
+
+/* 弹窗滚动条样式 */
+.anime-modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.anime-modal-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+}
+
+.anime-modal-content::-webkit-scrollbar-thumb {
+    background: var(--color-accent, #7ac0f0);
+    border-radius: 6px;
+}
+
+.anime-modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent, #7ac0f0);
+    border-radius: 6px;
+}
+
+.anime-modal-content::-webkit-scrollbar-thumb:active {
+    background: var(--color-accent, #7ac0f0);
+    border-radius: 6px;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.anime-modal-header {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+}
+
+.anime-modal-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(3px);
+    transform: scale(1.1);
+}
+
+.anime-modal-header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 40%, rgba(0, 0, 0, 0.9) 70%, var(--card-background) 100%);
+}
+
+.anime-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.anime-modal-close:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: rotate(90deg);
+}
+
+.anime-modal-body {
+    padding: 2rem;
+    margin-top: -100px;
+    position: relative;
+    z-index: 1;
+    background: var(--color-mantle, #2e2e3e);
+    border-radius: 0 0 1rem 1rem;
+}
+
+.anime-modal-main {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.anime-modal-cover {
+    flex-shrink: 0;
+    width: 180px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.anime-modal-cover img {
+    width: 100%;
+    display: block;
+}
+
+.anime-modal-info h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.8rem;
+    color: var(--text-color);
+}
+
+.anime-modal-info .title-en {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.anime-modal-info .rating-large {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--background-secondary);
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffd700;
+    margin-bottom: 1rem;
+}
+
+.anime-modal-info .details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.anime-modal-info .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+.anime-modal-info .detail-item i {
+    width: 20px;
+    color: var(--accent-color);
+}
+
+.anime-modal-info .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.anime-modal-info .tag {
+    padding: 0.3rem 0.8rem;
+    background: var(--color-accent);
+    color: var(--color-accent-fg);
+    border-radius: 1rem;
+    font-size: 0.85rem;
+}
+
+.anime-modal-summary {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--color-base, #1e1e2e);
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--color-key, #c48fad);
+}
+
+.anime-modal-summary h3 {
+    margin: 0 0 0.8rem 0;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.anime-modal-summary p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    text-align: justify;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.anime-modal-comment {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--color-base, #1e1e2e);
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--accent-color);
+}
+
+.anime-modal-comment h3 {
+    margin: 0 0 0.8rem 0;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.anime-modal-comment p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-style: italic;
+}
+
+/* 空状态 */
+.anime-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+}
+
+.anime-empty i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+}
+
+.anime-empty p {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Galgame 特定样式 */
+.galgame-section .status-badge.completed {
+    background: rgba(76, 175, 80, 0.9);
+}
+
+.galgame-section .status-badge.playing {
+    background: rgba(33, 150, 243, 0.9);
+}
+
+/* 观看进度 */
+.anime-card .progress {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--accent-color);
+    font-weight: 500;
+}
