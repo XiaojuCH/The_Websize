@@ -43,13 +43,17 @@
         "info": {
             "code": {
                 "china": "粤ICP备2025446005号",
-                "moegov": "萌ICP备2025446005号"
+                "moegov": "萌ICP备20256991号"
             },
             "link": {
                 "china": "https://beian.miit.gov.cn",
-                "moegov": "https://icp.gov.moe/?keyword=xxxxxxxx"
+                "moegov": "https://icp.gov.moe/?keyword=20256991"
             }
         },
         "enable": ["moegov", "china"]
+    },
+    "recommendations": {
+        "anime": [289, 3375, 37685, 72941],
+        "galgame": [22290, 1126, 4639, 1167]
     }
 }

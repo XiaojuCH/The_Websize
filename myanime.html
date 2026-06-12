@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>我的番剧收藏</title>
+        <link rel="icon" href="https://cdnfronts.xiaojuch.com/mgl.png" />
+        <link rel="stylesheet" href="./assets/styles/loaders.css" />
+        <iframe id="global-loader-iframe" src="./loaders/global.html"></iframe>
+        <link rel="stylesheet" href="./assets/libs/fontawesome/css/all.css" />
+        <script src="./assets\libs/cdn.min.js" defer></script>
+        <link rel="stylesheet" href="./assets/styles/elements.css" />
+        <link rel="stylesheet" href="./assets/styles/index.css" />
+        <link rel="stylesheet" href="./assets/styles/anime.css" />
+        <link rel="stylesheet" href="./assets/styles/responsive/index.css" />
+        <script src="./assets/scripts/utils.js"></script>
+        <script src="./assets/scripts/theme-loader.js"></script>
+        <script src="./assets/scripts/index.js"></script>
+        <script src="./assets/scripts/bangumi-api.js"></script>
+        <script src="./assets/scripts/anime.js"></script>
+        <theme></theme>
+    </head>
+    <body x-data="">
+        <div class="page-head">
+            <span class="title" style="cursor: pointer;" onclick="window.location.href='./'">← 我的番剧收藏</span>
+        </div>
+        <div class="primary-container">
+            <div class="left-area" style="display: none;">
+                <div class="cards">
+                    <div class="card-item" id="settings">
+                        <span class="title"><i class="fa-solid fa-sliders"></i>浏览设置</span>
+                        <div class="content">
+                            <div class="settings-item theme-settings">
+                                <span class="title"><i class="fa-solid fa-shirt"></i>配色方案 · <span x-text="config.content.theme.displayName"></span></span>
+                                <div class="themes"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-area" style="width: 100%; max-width: 100%;">
+                <div class="anime-section">
+                    <div class="anime-header">
+                        <h2><i class="fa-solid fa-tv"></i> 全部番剧</h2>
+                        <div class="anime-filters">
+                            <button class="filter-btn active" data-status="all">全部</button>
+                            <button class="filter-btn" data-status="watched">看过</button>
+                            <button class="filter-btn" data-status="watching">在看</button>
+                            <button class="filter-btn" data-status="plan">想看</button>
+                        </div>
+                    </div>
+                    <div class="anime-grid" id="anime-grid">
+                        <div class="anime-loading">加载中...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <iframe id="theme-color-loader-iframe" src="./loaders/theme-color.html"></iframe>
+        <script>
+            document.body.style.overflow = "hidden";
+            const minimumLoadingTime = 1800;
+            const startTime = new Date().getTime();
+            window.addEventListener("load", function () {
+                const currentTime = new Date().getTime();
+                const elapsedTime = currentTime - startTime;
+                const delay = Math.max(0, minimumLoadingTime - elapsedTime);
+                setTimeout(() => {
+                    document.getElementById("global-loader-iframe").className = "end";
+                    document.body.style.overflow = "unset";
+                }, delay);
+            });
+        </script>
+    </body>
+</html>
